@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
 <title>Para Dennise 🖤</title>
 
@@ -11,7 +12,8 @@
 
 body {
     margin: 0;
-    height: 100vh;
+    min-height: 100vh;
+    padding: 16px;
     background: radial-gradient(circle at center, #1a1a1a, #000000);
     font-family: 'Segoe UI', sans-serif;
     display: flex;
@@ -23,8 +25,9 @@ body {
 /* SOBRE */
 
 .sobre {
-    width: 320px;
-    height: 220px;
+    width: 92%;
+    max-width: 360px;
+    min-height: 220px;
     background: linear-gradient(145deg, #111, #000);
     border-radius: 14px;
     position: relative;
@@ -45,7 +48,7 @@ body {
     top: 20px;
     left: 20px;
     right: 20px;
-    font-size: 25px;
+    font-size: clamp(18px, 5vw, 26px);
     line-height: 1.4;
     opacity: 0.9;
 }
@@ -54,7 +57,7 @@ body {
 
 .corazon {
     margin-top: 20px;
-    font-size: 70px;
+    font-size: clamp(48px, 14vw, 80px);
     cursor: pointer;
     animation: latido 1.2s infinite;
     filter: drop-shadow(0 0 6px rgba(255,255,255,0.25));
@@ -78,7 +81,7 @@ body {
 .indicacion {
     position: absolute;
     bottom: 12px;
-    font-size: 13px;
+    font-size: clamp(12px, 3.5vw, 14px);
     opacity: 0.6;
 }
 
@@ -92,6 +95,18 @@ body {
     to {
         opacity: 0;
         transform: scale(0.9);
+    }
+}
+
+@media (max-width: 480px) {
+    .sobre {
+        padding: 16px;
+    }
+
+    .mensaje {
+        top: 16px;
+        left: 16px;
+        right: 16px;
     }
 }
 </style>
@@ -171,9 +186,9 @@ body {
 }
 
 .marco {
-    width:90%;
-    max-width:360px;
-    height:420px;
+    width: 100%;
+    max-width: 380px;
+    min-height: 420px;
     background:#0a0a0a;
     border-radius:18px;
     box-shadow:0 0 30px rgba(255,255,255,0.08);
@@ -186,8 +201,9 @@ body {
 }
 
 .marco img {
-    width:100%;
-    height:300px;
+    width: 100%;
+    max-height: 55vh;
+    height: auto;
     object-fit:cover;
     border-radius:12px;
 }
@@ -206,10 +222,10 @@ button {
     background:#111;
     color:white;
     border:1px solid #333;
-    padding:10px 16px;
+    padding: 12px 18px;
     margin:6px;
     border-radius:10px;
-    font-size:16px;
+    font-size: 18px;
     cursor:pointer;
 }
 
