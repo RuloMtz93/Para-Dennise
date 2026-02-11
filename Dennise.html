@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para Dennise 🖤</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    background: radial-gradient(circle at center, #1a1a1a, #000000);
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #e6e6e6;
+}
+
+/* SOBRE */
+
+.sobre {
+    width: 320px;
+    height: 220px;
+    background: linear-gradient(145deg, #111, #000);
+    border-radius: 14px;
+    position: relative;
+    box-shadow: 
+        0 0 30px rgba(255,255,255,0.05),
+        inset 0 0 20px rgba(255,255,255,0.03);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+/* TEXTO */
+
+.mensaje {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    font-size: 25px;
+    line-height: 1.4;
+    opacity: 0.9;
+}
+
+/* CORAZÓN */
+
+.corazon {
+    margin-top: 20px;
+    font-size: 70px;
+    cursor: pointer;
+    animation: latido 1.2s infinite;
+    filter: drop-shadow(0 0 6px rgba(255,255,255,0.25));
+    transition: transform 0.2s;
+}
+
+.corazon:hover {
+    transform: scale(1.2);
+}
+
+@keyframes latido {
+    0% { transform: scale(1); }
+    25% { transform: scale(1.18); }
+    40% { transform: scale(1); }
+    60% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+
+/* INDICACIÓN */
+
+.indicacion {
+    position: absolute;
+    bottom: 12px;
+    font-size: 13px;
+    opacity: 0.6;
+}
+
+/* TRANSICIÓN */
+
+.fade-out {
+    animation: fadeOut 0.8s forwards;
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="sobre" id="sobre">
+    
+    <div class="mensaje">
+        Para mi patito peleonero<br>
+        <br><br>
+    </div>
+
+    <div class="corazon" onclick="abrirSobre()">🖤</div>
+
+    <div class="indicacion">
+        toca el corazón
+    </div>
+
+</div>
+
+<script>
+const fotos = [
+{
+    img: "Foto1.jpeg",
+    texto: "Nuestro primer momento especial 🖤"
+},
+{
+    img: "Foto2.jpeg",
+    texto: "Ese día que no se me va a olvidar"
+},
+{
+    img: "Foto3.jpeg",
+    texto: "Cuando todo empezó a sentirse diferente"
+},
+{
+    img: "Foto4.jpeg",
+    texto: "Tu sonrisa aquí me ganó totalmente"
+},
+{
+    img: "Foto5.jpeg",
+    texto: "Y aquí supe que quería intentarlo contigo"
+}
+];
+
+let indice = 0;
+
+function abrirSobre() {
+    const sobre = document.getElementById("sobre");
+    sobre.classList.add("fade-out");
+
+    setTimeout(() => {
+        document.body.innerHTML = crearAlbumHTML();
+        mostrarFoto();
+    }, 700);
+}
+
+function crearAlbumHTML() {
+return `
+<style>
+body {
+    background: radial-gradient(circle, #111, #000);
+    margin:0;
+    font-family: Segoe UI, sans-serif;
+    color:white;
+}
+
+.album {
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    padding:20px;
+    text-align:center;
+}
+
+.marco {
+    width:90%;
+    max-width:360px;
+    height:420px;
+    background:#0a0a0a;
+    border-radius:18px;
+    box-shadow:0 0 30px rgba(255,255,255,0.08);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding:15px;
+    animation:fadeIn 0.8s;
+}
+
+.marco img {
+    width:100%;
+    height:300px;
+    object-fit:cover;
+    border-radius:12px;
+}
+
+.descripcion {
+    margin-top:15px;
+    font-size:16px;
+    opacity:0.9;
+}
+
+.controles {
+    margin-top:18px;
+}
+
+button {
+    background:#111;
+    color:white;
+    border:1px solid #333;
+    padding:10px 16px;
+    margin:6px;
+    border-radius:10px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover {
+    background:#1f1f1f;
+}
+
+.contador {
+    margin-top:8px;
+    font-size:13px;
+    opacity:0.6;
+}
+
+@keyframes fadeIn {
+    from {opacity:0; transform:scale(0.9);}
+    to {opacity:1; transform:scale(1);}
+}
+</style>
+
+<div class="album">
+
+    <div class="marco">
+        <img id="foto">
+        <div class="descripcion" id="desc"></div>
+
+        <div class="controles">
+            <button onclick="anterior()">⬅️</button>
+            <button onclick="siguiente()">➡️</button>
+        </div>
+
+        <div class="contador" id="contador"></div>
+    </div>
+
+</div>
+`;
+}
+
+function mostrarFoto() {
+    document.getElementById("foto").src = fotos[indice].img;
+    document.getElementById("desc").innerText = fotos[indice].texto;
+    document.getElementById("contador").innerText =
+        (indice + 1) + " / " + fotos.length;
+}
+
+function siguiente() {
+    if (indice < fotos.length - 1) {
+        indice++;
+        mostrarFoto();
+    }
+}
+
+function anterior() {
+    if (indice > 0) {
+        indice--;
+        mostrarFoto();
+    }
+}
+</script>
+
+</body>
+</html>
