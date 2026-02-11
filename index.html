@@ -164,8 +164,8 @@ function abrirSobre() {
     sobre.classList.add("fade-out");
 
     // ▶️ reproducir música
-    const musica = document.getElementById("musica");
-    musica.play().catch(()=>{});
+   // const musica = document.getElementById("musica");
+    //musica.play().catch(()=>{});
 
     setTimeout(() => {
         document.body.innerHTML = crearAlbumHTML();
@@ -293,9 +293,9 @@ function anterior() {
 }
 </script>
 
-<audio id="musica" loop>
+<!-- <audio id="musica" loop>
     <source src="Te_ves_muy_bien.mp3" type="audio/mpeg">
-</audio>
+</audio>-->
 
 </body>
 </html>
