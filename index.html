@@ -16,11 +16,16 @@ body {
     padding: 16px;
     background: radial-gradient(circle at center, #1a1a1a, #000000);
     font-family: 'Segoe UI', sans-serif;
+    color: #e6e6e6;
+}
+#app {
+    width: 100%;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #e6e6e6;
 }
+
 
 /* SOBRE */
 
@@ -114,6 +119,12 @@ body {
 
 <body>
 
+<audio id="musica" loop>
+<source src="Te_ves_muy_bien.mp3" type="audio/mpeg">
+</audio>
+
+<div id="app">
+
 <div class="sobre" id="sobre">
     
     <div class="mensaje">
@@ -128,13 +139,10 @@ body {
     </div>
 
 </div>
+</div>
 
 <script>
 const fotos = [
-{
-    img: "Foto0.jpeg",
-    texto: "Nuestro primer momento especial 🖤"
-},
 {
     img: "Foto1.jpeg",
     texto: "Nuestro primer momento especial 🖤"
@@ -154,6 +162,10 @@ const fotos = [
 {
     img: "Foto5.jpeg",
     texto: "Y aquí supe que quería intentarlo contigo"
+},
+{
+    img: "Foto6.jpeg",
+    texto: "Nuestro primer momento especial 🖤"
 }
 ];
 
@@ -164,12 +176,12 @@ function abrirSobre() {
     sobre.classList.add("fade-out");
 
     // ▶️ reproducir música
-   // const musica = document.getElementById("musica");
-    //musica.play().catch(()=>{});
+    const musica = document.getElementById("musica");
+    musica.play().catch(()=>{});
 
     setTimeout(() => {
-        document.body.innerHTML = crearAlbumHTML();
-        mostrarFoto();
+    document.getElementById("app").innerHTML = crearAlbumHTML();
+    mostrarFoto();
     }, 700);
 }
 
@@ -292,11 +304,6 @@ function anterior() {
     }
 }
 </script>
-
-<!-- <audio id="musica" loop>
-    <source src="Te_ves_muy_bien.mp3" type="audio/mpeg">
-</audio>-->
-
 </body>
 </html>
 
