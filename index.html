@@ -14,7 +14,9 @@ body {
     margin: 0;
     min-height: 100vh;
     padding: 16px;
-    background: radial-gradient(circle at center, #1a1a1a, #000000);
+    background: linear-gradient(-45deg, #0f0f0f, #1a001a, #000000, #1a0d26);
+    background-size: 400% 400%;
+    animation: fondoAnimado 12s ease infinite;
     font-family: 'Segoe UI', sans-serif;
     color: #e6e6e6;
 }
@@ -81,6 +83,11 @@ body {
     100% { transform: scale(1); }
 }
 
+@keyframes fondoAnimado {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
 /* INDICACIÓN */
 
 .indicacion {
@@ -178,8 +185,8 @@ const fotos = [
 },
 {
     img: "Foto4.jpeg",
-    texto: `Han sido 3 meses de momentos felices, de conocernos más, de aprender el uno del otro, de compartir nuestras cosas favoritas
-            , de reír juntos, sobre todo de eso de reirnos de cada chiste rancio que se nos ocurra.`
+    texto: `Han sido 3 meses de momentos felices, de conocernos más, de aprender el uno del otro, de compartir nuestras cosas favoritas, 
+    de reír juntos, sobre todo de eso de reirnos de cada chiste rancio que se nos ocurra.`
 },
 {
     img: "Foto5.jpeg",
@@ -246,7 +253,9 @@ function crearAlbumHTML() {
 return `
 <style>
 body {
-    background: radial-gradient(circle, #111, #000);
+    background: linear-gradient(-45deg, #0f0f0f, #1a001a, #000000, #1a0d26);
+    background-size: 400% 400%;
+    animation: fondoAnimado 12s ease infinite;
     margin:0;
     font-family: Segoe UI, sans-serif;
     color:white;
@@ -320,6 +329,12 @@ button:hover {
 @keyframes fadeIn {
     from {opacity:0; transform:scale(0.9);}
     to {opacity:1; transform:scale(1);}
+}
+
+@keyframes fondoAnimado {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 </style>
 
@@ -447,7 +462,6 @@ function mostrarFinal() {
 
     <div class="final">
         <div class="pregunta">
-            Después de todo esto…<br><br>
             ¿Quieres ser mi novia? 🖤
         </div>
 
@@ -463,7 +477,7 @@ function mostrarFinal() {
 
 function respuestaSi() {
     const r = document.getElementById("respuesta");
-    r.innerHTML = `<div class="celebracion">🖤 Ahora oficialmente somos nosotros 🖤</div>`;
+    r.innerHTML = `<div class="celebracion">🖤 Ya no somos más unn vinculo confuso 🖤</div>`;
 }
 
 function moverNo(boton) {
