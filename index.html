@@ -216,6 +216,16 @@ const fotos = [
 }
 ];
 
+window.addEventListener("load", () => {
+    fotos.forEach(f => {
+        if (f.img) {
+            const img = new Image();
+            img.src = f.img;
+        }
+    });
+});
+
+
 let indice = 0;
 
 function abrirSobre() {
@@ -273,6 +283,7 @@ body {
     height: auto;
     object-fit:cover;
     border-radius:12px;
+    will-change: opacity;
 }
 
 .descripcion {
@@ -331,11 +342,29 @@ button:hover {
 }
 
 function mostrarFoto() {
-    document.getElementById("foto").src = fotos[indice].img;
-    document.getElementById("desc").innerText = fotos[indice].texto;
+    const img = document.getElementById("foto");
+    const data = fotos[indice];
+
+    if (data.img) {
+        img.decoding = "async"; // optimiza en móviles
+        img.style.opacity = 0;
+        img.src = data.img;
+
+        img.onload = () => {
+            img.style.transition = "opacity 0.3s ease";
+            img.style.opacity = 1;
+        };
+
+        img.style.display = "block";
+    } else {
+        img.style.display = "none";
+    }
+
+    document.getElementById("desc").innerText = data.texto;
     document.getElementById("contador").innerText =
         (indice + 1) + " / " + fotos.length;
 }
+
 
 function siguiente() {
     if (indice < fotos.length - 1) {
