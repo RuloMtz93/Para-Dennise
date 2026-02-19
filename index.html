@@ -6,15 +6,6 @@
 <title>Para Dennise 🖤</title>
 
 <style>
-
-.fotoAlbum {
-    width: 100%;
-    max-height: 55vh;
-    object-fit: cover;
-    border-radius: 12px;
-    transition: opacity 0.25s ease;
-}
-
 * {
     box-sizing: border-box;
 }
@@ -225,16 +216,6 @@ const fotos = [
 }
 ];
 
-const cacheImagenes = {};
-
-fotos.forEach(f => {
-    if (f.img) {
-        const img = new Image();
-        img.src = f.img;
-        cacheImagenes[f.img] = img;
-    }
-});
-
 let indice = 0;
 
 function abrirSobre() {
@@ -284,14 +265,19 @@ body {
     align-items:center;
     padding:15px;
     animation:fadeIn 0.8s;
-    gap: 8px;
+}
 
+.marco img {
+    width: 100%;
+    max-height: 55vh;
+    height: auto;
+    object-fit:cover;
+    border-radius:12px;
 }
 
 .descripcion {
     margin-top:15px;
-    font-size:15px;
-    line-height:1.5;
+    font-size:16px;
     opacity:0.9;
 }
 
@@ -329,7 +315,7 @@ button:hover {
 <div class="album">
 
     <div class="marco">
-        <img id="foto" class="fotoAlbum">
+        <img id="foto">
         <div class="descripcion" id="desc"></div>
 
         <div class="controles">
@@ -345,21 +331,8 @@ button:hover {
 }
 
 function mostrarFoto() {
-    const img = document.getElementById("foto");
-    const data = fotos[indice];
-
-    if (data.img) {
-        img.style.opacity = 0;
-        img.src = data.img;
-
-        setTimeout(() => {
-            img.style.opacity = 1;
-        }, 50);
-    } else {
-        img.removeAttribute("src");
-    }
-
-    document.getElementById("desc").innerText = data.texto;
+    document.getElementById("foto").src = fotos[indice].img;
+    document.getElementById("desc").innerText = fotos[indice].texto;
     document.getElementById("contador").innerText =
         (indice + 1) + " / " + fotos.length;
 }
